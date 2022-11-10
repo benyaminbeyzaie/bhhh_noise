@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "982630579115",
+    "project_id": "bhhh-noise",
+    "storage_bucket": "bhhh-noise.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:982630579115:android:b4e11763f7e40127dfb0ee",
+        "android_client_info": {
+          "package_name": "ir.benyaminbeyzaie.bhhhnoise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "982630579115-4k8vmg1k7jvk2tadu6r90scp6031p8nd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGvO3PgKz33t_BAeKDp78CXNDZUMG4MaI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "982630579115-4k8vmg1k7jvk2tadu6r90scp6031p8nd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -9,11 +9,41 @@ class PlayerCubit extends Cubit<PlayerState> {
 
   PlayerCubit({
     required this.repository,
-  }) : super(PlayerStarted(noisePlayers: repository.getNoisePlayersMapStatus));
+  }) : super(
+          PlayerStarted(
+            noisePlayers: repository.getNoisePlayersMapStatus,
+            savedNoises: repository.getSavedNoiseNames(),
+          ),
+        );
+
+  void playSavedNoise({required String name}) {
+    repository.playSavedNoise(name);
+    emit(
+      PlayerStarted(
+        noisePlayers: repository.getNoisePlayersMapStatus,
+        savedNoises: repository.getSavedNoiseNames(),
+      ),
+    );
+  }
+
+  void saveNoise({required String name}) {
+    repository.saveCurrentNoise(name);
+    emit(
+      PlayerStarted(
+        noisePlayers: repository.getNoisePlayersMapStatus,
+        savedNoises: repository.getSavedNoiseNames(),
+      ),
+    );
+  }
 
   void toggleNoise({required int id}) {
     repository.toggleNoise(id: id);
-    emit(PlayerStarted(noisePlayers: repository.getNoisePlayersMapStatus));
+    emit(
+      PlayerStarted(
+        noisePlayers: repository.getNoisePlayersMapStatus,
+        savedNoises: repository.getSavedNoiseNames(),
+      ),
+    );
   }
 
   void setVolume({
@@ -21,16 +51,31 @@ class PlayerCubit extends Cubit<PlayerState> {
     required double volume,
   }) {
     repository.setVolume(id: id, volume: volume);
-    emit(PlayerStarted(noisePlayers: repository.getNoisePlayersMapStatus));
+    emit(
+      PlayerStarted(
+        noisePlayers: repository.getNoisePlayersMapStatus,
+        savedNoises: repository.getSavedNoiseNames(),
+      ),
+    );
   }
 
   void randomizePlay() {
     repository.randomizePlay();
-    emit(PlayerStarted(noisePlayers: repository.getNoisePlayersMapStatus));
+    emit(
+      PlayerStarted(
+        noisePlayers: repository.getNoisePlayersMapStatus,
+        savedNoises: repository.getSavedNoiseNames(),
+      ),
+    );
   }
 
   void stopAll() {
     repository.stopAll();
-    emit(PlayerStarted(noisePlayers: repository.getNoisePlayersMapStatus));
+    emit(
+      PlayerStarted(
+        noisePlayers: repository.getNoisePlayersMapStatus,
+        savedNoises: repository.getSavedNoiseNames(),
+      ),
+    );
   }
 }

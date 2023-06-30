@@ -1,3 +1,4 @@
+import 'package:bhhh_noise/sl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bhhh_noise/repository/noise_player_model.dart';
@@ -6,7 +7,8 @@ import 'cubit/player_cubit.dart';
 import 'player_page.dart';
 import 'repository/player_repository.dart';
 
-void main() {
+void main() async {
+  await setupSL();
   runApp(const MyApp());
 }
 

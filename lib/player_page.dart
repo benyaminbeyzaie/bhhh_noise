@@ -1,3 +1,5 @@
+import 'package:bhhh_noise/gallery_modal.dart';
+import 'package:bhhh_noise/text_input_modal.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -81,6 +83,40 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
       child: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: ElevatedButton(
+              onPressed: () async {
+                await showGallery(context);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text("Play from gallery"),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: ElevatedButton(
+              onPressed: () async {
+                final bloc = context.read<PlayerCubit>();
+                final name = await showTextInputModal(context);
+                if (name == null) {
+                  return;
+                }
+
+                bloc.saveNoise(name: name);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text("Save noise"),
+                ],
+              ),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: ElevatedButton(

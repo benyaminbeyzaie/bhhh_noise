@@ -14,6 +14,28 @@ class NoisePlayerModel {
     required this.url,
     required this.icon,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'playing': playing,
+      'volume': volume,
+      'url': url,
+      'icon': icon,
+    };
+  }
+
+  factory NoisePlayerModel.fromJson(Map<String, dynamic> json) {
+    return NoisePlayerModel(
+      id: json['id'],
+      name: json['name'],
+      playing: json['playing'],
+      volume: json['volume'],
+      url: json['url'],
+      icon: json['icon'],
+    );
+  }
 }
 
 Map<int, NoisePlayerModel> staticNoisePlayMap = {

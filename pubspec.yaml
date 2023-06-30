@@ -18,6 +18,8 @@ dependencies:
   url_launcher: ^6.1.6
   flutter_animate: ^2.0.1
   firebase_core: ^2.1.1
+  shared_preferences: ^2.1.2
+  get_it: ^7.6.0
 
 dev_dependencies:
   flutter_test:

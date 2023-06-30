@@ -16,8 +16,9 @@ class PlayerCubit extends Cubit<PlayerState> {
           ),
         );
 
-  void playSavedNoise({required String name}) {
-    repository.playSavedNoise(name);
+  void playSavedNoise({required String name}) async {
+    emit(PlayerLoading());
+    await repository.playSavedNoise(name);
     emit(
       PlayerStarted(
         noisePlayers: repository.getNoisePlayersMapStatus,

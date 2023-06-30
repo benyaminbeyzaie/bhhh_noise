@@ -57,6 +57,14 @@ class _PlayerPageState extends State<PlayerPage> {
     return BlocConsumer<PlayerCubit, PlayerState>(
       listener: (context, state) {},
       builder: (context, state) {
+        if (state is PlayerLoading) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              CircularProgressIndicator(),
+            ],
+          );
+        }
         if (state is PlayerStarted) {
           return Center(
             child: SizedBox(

@@ -2,6 +2,8 @@ part of 'player_cubit.dart';
 
 abstract class PlayerState {}
 
+class PlayerLoading extends PlayerState {}
+
 class PlayerStarted extends PlayerState {
   Map<int, NoisePlayerModel> noisePlayers;
   Set<String> savedNoises;

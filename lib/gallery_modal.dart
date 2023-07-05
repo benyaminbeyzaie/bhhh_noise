@@ -13,34 +13,47 @@ Future<void> showGallery(BuildContext context) async {
             return Container(
               height: 200,
               color: Colors.white,
-              child: ListView.builder(
-                itemCount: state.savedNoises.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(noises[index]),
-                    trailing: IconButton(
-                      onPressed: () => {
-                        context
-                            .read<PlayerCubit>()
-                            .deleteSavedNoise(name: noises[index])
-                      },
-                      icon: const Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
-                    ),
-                    onTap: () {
-                      context
-                          .read<PlayerCubit>()
-                          .playSavedNoise(name: noises[index]);
-                      Navigator.pop(context);
-                    },
-                  );
-                },
-              ),
+              child: _buildContent(noises),
             );
           }
           return Container();
+        },
+      );
+    },
+  );
+}
+
+Widget _buildContent(List<String> noises) {
+  if (noises.isEmpty) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: const [
+        Icon(
+          Icons.air_outlined,
+          size: 50,
+        ),
+        Text("You don't have any saved noise!")
+      ],
+    );
+  }
+  return ListView.builder(
+    itemCount: noises.length,
+    itemBuilder: (context, index) {
+      return ListTile(
+        title: Text(noises[index]),
+        trailing: IconButton(
+          onPressed: () => {
+            context.read<PlayerCubit>().deleteSavedNoise(name: noises[index])
+          },
+          icon: const Icon(
+            Icons.delete,
+            color: Colors.red,
+          ),
+        ),
+        onTap: () {
+          context.read<PlayerCubit>().playSavedNoise(name: noises[index]);
+          Navigator.pop(context);
         },
       );
     },

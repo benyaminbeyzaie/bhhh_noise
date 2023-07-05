@@ -38,7 +38,7 @@ class PlayerCubit extends Cubit<PlayerState> {
   }
 
   void deleteSavedNoise({required String name}) async {
-    await repository.saveCurrentNoise(name);
+    await repository.deleteSavedNoise(name);
     emit(
       PlayerNormalState(
         noisePlayers: repository.getNoisePlayersMapStatus,

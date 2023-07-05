@@ -1,12 +1,26 @@
-# bhhh noise.
+# bhhh noise
 
-bhhh noise is fun little noise player which you can mix white noises and enjoy creating a perfect place for work and study.
+## Description
 
-bhhh noise is available in many platforms like linux, macOS, android, iOS and web. you can download the clients of those OS very soon in this repo, so stay tunned!
+bhhh noise is a fun little noise player that allows you to mix white noises and create a perfect environment for work and study.
 
-[Responsive web demo and PWA version](https://bhhh-noise.web.app/) hosted on firebase https://bhhh-noise.web.app/
+## Platforms
 
-# Screenshots
+bhhh noise is available on various platforms, including:
+
+- Linux
+- macOS
+- Android
+- iOS
+- Web
+
+You can soon download the client applications for these operating systems from this repository. Stay tuned for updates!
+
+## Demo and PWA Version
+
+Check out our responsive web demo and Progressive Web App (PWA) version hosted on Firebase: [bhhh noise Demo](https://bhhh-noise.web.app/)
+
+## Screenshots
 
 Here are some screenshots from our app:
 
@@ -14,10 +28,10 @@ Here are some screenshots from our app:
 | :--------------------------: | :----------------------------------: |
 | ![mac](/screenshots/mac.png) | ![android](/screenshots/android.png) |
 
-## Details
+## Project Details
 
-This project is basically a clone of https://www.shhhnoise.com/ in flutter. I've used BLoC for state management and a semi-clean-architecture is used for code architecture.
+This project is a Flutter-based clone of [shhhnoise.com](https://www.shhhnoise.com/). It utilizes the BLoC pattern for state management and follows a semi-clean architecture for code organization.
 
-Changing the noises is very simple you just have to change `staticNoisePlayMap` in `repository/noise_player_model.dart` file (I should make another separated json file for static noise detail later!). Current noises are totally random and maybe not even good for mixing!
+To change the noises, simply modify the `staticNoisePlayMap` in the `repository/noise_player_model.dart` file. (Note: In the future, I plan to move the static noise details to a separate JSON file.) The current noises are randomly selected and may not be optimal for mixing.
 
-Feel free to contribute.
+Contributions are welcome! Feel free to contribute to the project and make it even better.

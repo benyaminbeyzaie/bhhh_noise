@@ -10,7 +10,7 @@ class PlayerCubit extends Cubit<PlayerState> {
   PlayerCubit({
     required this.repository,
   }) : super(
-          PlayerStarted(
+          PlayerNormalState(
             noisePlayers: repository.getNoisePlayersMapStatus,
             savedNoises: repository.getSavedNoiseNames(),
           ),
@@ -20,27 +20,37 @@ class PlayerCubit extends Cubit<PlayerState> {
     emit(PlayerLoading());
     await repository.playSavedNoise(name);
     emit(
-      PlayerStarted(
+      PlayerNormalState(
         noisePlayers: repository.getNoisePlayersMapStatus,
         savedNoises: repository.getSavedNoiseNames(),
       ),
     );
   }
 
-  void saveNoise({required String name}) {
-    repository.saveCurrentNoise(name);
+  void saveNoise({required String name}) async {
+    await repository.saveCurrentNoise(name);
     emit(
-      PlayerStarted(
+      NoiseSaved(
         noisePlayers: repository.getNoisePlayersMapStatus,
         savedNoises: repository.getSavedNoiseNames(),
       ),
     );
   }
 
-  void toggleNoise({required int id}) {
+  void deleteSavedNoise({required String name}) async {
+    await repository.saveCurrentNoise(name);
+    emit(
+      PlayerNormalState(
+        noisePlayers: repository.getNoisePlayersMapStatus,
+        savedNoises: repository.getSavedNoiseNames(),
+      ),
+    );
+  }
+
+  void toggleNoise({required int id}) async {
     repository.toggleNoise(id: id);
     emit(
-      PlayerStarted(
+      PlayerNormalState(
         noisePlayers: repository.getNoisePlayersMapStatus,
         savedNoises: repository.getSavedNoiseNames(),
       ),
@@ -50,30 +60,30 @@ class PlayerCubit extends Cubit<PlayerState> {
   void setVolume({
     required int id,
     required double volume,
-  }) {
-    repository.setVolume(id: id, volume: volume);
+  }) async {
+    await repository.setVolume(id: id, volume: volume);
     emit(
-      PlayerStarted(
+      PlayerNormalState(
         noisePlayers: repository.getNoisePlayersMapStatus,
         savedNoises: repository.getSavedNoiseNames(),
       ),
     );
   }
 
-  void randomizePlay() {
-    repository.randomizePlay();
+  void randomizePlay() async {
+    await repository.randomizePlay();
     emit(
-      PlayerStarted(
+      PlayerNormalState(
         noisePlayers: repository.getNoisePlayersMapStatus,
         savedNoises: repository.getSavedNoiseNames(),
       ),
     );
   }
 
-  void stopAll() {
-    repository.stopAll();
+  void stopAll() async {
+    await repository.stopAll();
     emit(
-      PlayerStarted(
+      PlayerStopped(
         noisePlayers: repository.getNoisePlayersMapStatus,
         savedNoises: repository.getSavedNoiseNames(),
       ),

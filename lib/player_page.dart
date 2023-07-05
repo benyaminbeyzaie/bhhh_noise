@@ -1,10 +1,11 @@
-import 'package:bhhh_noise/gallery_modal.dart';
+import 'package:bhhh_noise/bhhh_drawer.dart';
 import 'package:bhhh_noise/text_input_modal.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'bhhh_app_bar.dart';
 import 'cubit/player_cubit.dart';
 
 class PlayerPage extends StatefulWidget {
@@ -19,29 +20,9 @@ class _PlayerPageState extends State<PlayerPage> {
   final double _cardHeight = 200;
   @override
   Widget build(BuildContext context) {
-    if (MediaQuery.of(context).size.width < 500) {
-      _columnCount = 1;
-    } else if (MediaQuery.of(context).size.width < 1000) {
-      _columnCount = 2;
-    } else {
-      _columnCount = 3;
-    }
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        elevation: 10,
-        shadowColor: Colors.black26,
-        title: const Text(
-          "bhhh noise.",
-          style: TextStyle(
-            color: Colors.black,
-            fontStyle: FontStyle.italic,
-            fontWeight: FontWeight.bold,
-            fontSize: 26,
-          ),
-        ),
-        backgroundColor: Colors.white,
-      ),
+      drawer: const BhhhDrawer(),
+      appBar: const BhhhAppBar(),
       body: ListView(
         children: [
           ..._buildTitles(),
@@ -54,8 +35,23 @@ class _PlayerPageState extends State<PlayerPage> {
   }
 
   BlocConsumer<PlayerCubit, PlayerState> _buildPlayer() {
+    if (MediaQuery.of(context).size.width < 500) {
+      _columnCount = 1;
+    } else if (MediaQuery.of(context).size.width < 1000) {
+      _columnCount = 2;
+    } else {
+      _columnCount = 3;
+    }
     return BlocConsumer<PlayerCubit, PlayerState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state is NoiseSaved) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Noise Saved!"),
+            ),
+          );
+        }
+      },
       builder: (context, state) {
         if (state is PlayerLoading) {
           return Row(
@@ -65,7 +61,7 @@ class _PlayerPageState extends State<PlayerPage> {
             ],
           );
         }
-        if (state is PlayerStarted) {
+        if (state is PlayerNormalState) {
           return Center(
             child: SizedBox(
               height: (state.noisePlayers.length / _columnCount).ceil() *
@@ -91,20 +87,6 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4),
-            child: ElevatedButton(
-              onPressed: () async {
-                await showGallery(context);
-              },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("Play from gallery"),
-                ],
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
             child: ElevatedButton(
@@ -275,7 +257,7 @@ class _PlayerPageState extends State<PlayerPage> {
     );
   }
 
-  GridView _buildGridOfPlayers(PlayerStarted state) {
+  GridView _buildGridOfPlayers(PlayerNormalState state) {
     return GridView.builder(
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.symmetric(
@@ -300,13 +282,13 @@ class _PlayerPageState extends State<PlayerPage> {
             state.noisePlayers[index]!.playing
                 ? BoxShadow(
                     color: Colors.amber.withOpacity(0.4),
-                    blurRadius: 10, // soften the shadow
+                    blurRadius: 10,
                     spreadRadius: -4,
                     blurStyle: BlurStyle.normal,
                   )
                 : BoxShadow(
                     color: Colors.grey.withOpacity(.2),
-                    blurRadius: 20.0, // soften the shadow
+                    blurRadius: 20.0,
                     spreadRadius: 0.0,
                   ),
           ],

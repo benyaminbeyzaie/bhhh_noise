@@ -26,6 +26,11 @@ class NoisePlayerModel {
     };
   }
 
+  @override
+  String toString() {
+    return toJson().toString();
+  }
+
   factory NoisePlayerModel.fromJson(Map<String, dynamic> json) {
     return NoisePlayerModel(
       id: json['id'],

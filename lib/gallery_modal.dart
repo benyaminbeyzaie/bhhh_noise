@@ -8,7 +8,7 @@ Future<void> showGallery(BuildContext context) async {
     builder: (BuildContext context) {
       return BlocBuilder<PlayerCubit, PlayerState>(
         builder: (context, state) {
-          if (state is PlayerStarted) {
+          if (state is PlayerNormalState) {
             final noises = state.savedNoises.toList(growable: false);
             return Container(
               height: 200,
@@ -18,6 +18,17 @@ Future<void> showGallery(BuildContext context) async {
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: Text(noises[index]),
+                    trailing: IconButton(
+                      onPressed: () => {
+                        context
+                            .read<PlayerCubit>()
+                            .deleteSavedNoise(name: noises[index])
+                      },
+                      icon: const Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                      ),
+                    ),
                     onTap: () {
                       context
                           .read<PlayerCubit>()

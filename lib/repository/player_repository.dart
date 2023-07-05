@@ -21,6 +21,7 @@ class PlayerRepository {
       players[key]!.setUrl(value.url);
       players[key]!.setLoopMode(LoopMode.one);
       players[key]!.setVolume(0.5);
+      players[key]!.load();
     });
   }
 
@@ -47,6 +48,15 @@ class PlayerRepository {
     await preferences.setString(name, serializePlayers());
   }
 
+  Future<void> deleteSavedNoise(String name) async {
+    final preferences = sl<SharedPreferences>();
+    if (preferences.get(name) == null) {
+      throw Exception("The name is not valid key");
+    }
+
+    await preferences.remove(name);
+  }
+
   Future<void> playSavedNoise(String name) async {
     final preferences = sl<SharedPreferences>();
     final saved = preferences.get(name);
@@ -68,16 +78,19 @@ class PlayerRepository {
 
   Future<void> playNoise({required int id}) async {
     noisePlayersMap[id]!.playing = true;
-    await players[id]!.play();
+    players[id]!.play();
   }
 
-  Future<void> toggleNoise({required int id}) async {
+  Future<void> stopNoise({required int id}) async {
+    noisePlayersMap[id]!.playing = false;
+    players[id]!.stop();
+  }
+
+  void toggleNoise({required int id}) {
     if (noisePlayersMap[id]!.playing) {
-      noisePlayersMap[id]!.playing = false;
-      await players[id]!.stop();
+      stopNoise(id: id);
     } else {
-      noisePlayersMap[id]!.playing = true;
-      await players[id]!.play();
+      playNoise(id: id);
     }
   }
 
@@ -96,9 +109,10 @@ class PlayerRepository {
     }
   }
 
-  void randomizePlay() {
+  Future<void> randomizePlay() async {
     Random random = Random();
-    players.forEach((key, value) async {
+    for (final player in players.entries) {
+      final key = player.key;
       if (random.nextBool()) {
         noisePlayersMap[key]!.playing = true;
         noisePlayersMap[key]!.volume = random.nextDouble();
@@ -108,7 +122,7 @@ class PlayerRepository {
         noisePlayersMap[key]!.playing = false;
         await players[key]!.stop();
       }
-    });
+    }
   }
 
   Map<int, NoisePlayerModel> get getNoisePlayersMapStatus => noisePlayersMap;

@@ -4,17 +4,24 @@ abstract class PlayerState {}
 
 class PlayerLoading extends PlayerState {}
 
-class PlayerStarted extends PlayerState {
+class PlayerNormalState extends PlayerState {
   Map<int, NoisePlayerModel> noisePlayers;
   Set<String> savedNoises;
 
-  PlayerStarted({
+  PlayerNormalState({
     required this.noisePlayers,
     required this.savedNoises,
   });
 }
 
-class NoiseSaved extends PlayerStarted {
+class PlayerStopped extends PlayerNormalState {
+  PlayerStopped({
+    required super.noisePlayers,
+    required super.savedNoises,
+  });
+}
+
+class NoiseSaved extends PlayerNormalState {
   NoiseSaved({
     required super.noisePlayers,
     required super.savedNoises,

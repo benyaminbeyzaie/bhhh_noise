@@ -4,10 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bhhh_noise/repository/noise_player_model.dart';
 
 import 'cubit/player_cubit.dart';
-import 'player_page.dart';
+import 'page/player_page.dart';
 import 'repository/player_repository.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await setupSL();
   runApp(const MyApp());
 }

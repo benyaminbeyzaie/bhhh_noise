@@ -1,12 +1,12 @@
-import 'package:bhhh_noise/bhhh_drawer.dart';
-import 'package:bhhh_noise/text_input_modal.dart';
+import 'package:bhhh_noise/widget/bhhh_drawer.dart';
+import 'package:bhhh_noise/widget/text_input_modal.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'bhhh_app_bar.dart';
-import 'cubit/player_cubit.dart';
+import '../widget/bhhh_app_bar.dart';
+import '../cubit/player_cubit.dart';
 
 class PlayerPage extends StatefulWidget {
   const PlayerPage({super.key});

@@ -1,4 +1,4 @@
-import 'package:bhhh_noise/gallery_modal.dart';
+import 'package:bhhh_noise/widget/gallery_modal.dart';
 import 'package:flutter/material.dart';
 
 class BhhhDrawer extends StatelessWidget {

@@ -2,11 +2,11 @@
 
 ## Description
 
-bhhh noise is a fun little noise player that allows you to mix white noises and create a perfect environment for work and study.
+`bhhh noise` is a delightful noise player designed to help you curate the perfect acoustic environment for work and study by mixing various white noises.
 
-## Platforms
+## Supported Platforms
 
-bhhh noise is available on various platforms, including:
+`bhhh noise` is available on a wide range of platforms, including:
 
 - Linux
 - macOS
@@ -14,24 +14,24 @@ bhhh noise is available on various platforms, including:
 - iOS
 - Web
 
-You can soon download the client applications for these operating systems from this repository. Stay tuned for updates!
+Stay tuned for updates as we prepare to release client applications for these operating systems.
 
-## Demo and PWA Version
+## Demo and Progressive Web App (PWA)
 
-Check out our responsive web demo and Progressive Web App (PWA) version hosted on Firebase: [bhhh noise Demo](https://bhhh-noise.web.app/)
+Explore our responsive web demo and experience the Progressive Web App (PWA) version hosted on Firebase: [bhhh noise Demo](https://bhhh-noise.web.app/)
 
 ## Screenshots
 
-Here are some screenshots from our app:
+Take a peek at `bhhh noise` in action with these screenshots:
 
-|            macOS             |               Android                |
-| :--------------------------: | :----------------------------------: |
-| ![mac](/screenshots/mac.png) | ![android](/screenshots/android.png) |
+| macOS                          | Android                          |
+| :----------------------------: | :-------------------------------: |
+| ![mac](/screenshots/mac.png)   | ![android](/screenshots/android.png) |
 
 ## Project Details
 
-This project is a Flutter-based clone of [shhhnoise.com](https://www.shhhnoise.com/). It utilizes the BLoC pattern for state management and follows a semi-clean architecture for code organization.
+This project is a Flutter-based replica of [shhhnoise.com](https://www.shhhnoise.com/), adopting the BLoC pattern for state management and following a semi-clean architecture for code organization.
 
-To change the noises, simply modify the `staticNoisePlayMap` in the `repository/noise_player_model.dart` file. (Note: In the future, I plan to move the static noise details to a separate JSON file.) The current noises are randomly selected and may not be optimal for mixing.
+To customize the available noises, simply modify the `staticNoisePlayMap` within the `repository/noise_player_model.dart` file. (Note: In the future, we intend to relocate the static noise definitions to a separate JSON file.) Keep in mind that the current noise selections are randomized and may not be ideal for mixing.
 
-Contributions are welcome! Feel free to contribute to the project and make it even better.
+We welcome contributions! Feel free to participate in the project and help us make it even better.

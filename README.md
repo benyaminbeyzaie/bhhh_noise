@@ -1,7 +1,5 @@
 # bhhh noise
 
-## Description
-
 `bhhh noise` is a delightful noise player designed to help you curate the perfect acoustic environment for work and study by mixing various white noises.
 
 ## Supported Platforms
